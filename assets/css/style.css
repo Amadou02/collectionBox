@@ -1,9 +1,15 @@
+.smallImg{
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
 /* MAIN START */
 main{
 	background-color: #f2f2f2;
 }
 .article{
-	margin-left: 5px;
+  margin-left: 5px;
 	margin-right: 5px;
 	background-color: white;
 	height: auto;
@@ -22,9 +28,15 @@ main{
 	border-radius: 15px;
 	margin-top: 10px;
 }
+#t1{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: solid blue 2px;
+}
 
 #content{
-	padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 /* MAIN END */
 
