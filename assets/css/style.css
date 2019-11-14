@@ -1,0 +1,154 @@
+main
+{
+	background-color: #f2f2f2;
+	height: auto;
+	padding: 30px;
+
+}
+
+/* Format d'affichage pour les articles*/
+.cardArticle{
+	width: 320px;
+	background-color: white;
+	height: auto;
+	-webkit-box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
+	-moz-box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
+	box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
+	border: 1px solid #dfdede;
+	overflow: hidden;
+	border-radius: 15px;
+	margin-top: 80px;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+.txt_small
+{
+	word-break: normal;
+	margin: auto;
+	width: 90%;
+	border-radius: 15px;
+	margin-top: 10px;
+}
+
+/* DEBUT STYLE FOOTER */
+footer
+{
+	background-color: #F2F2F2;
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+	padding-top: 40px;
+}
+
+.blockEnLigne
+{
+	display: inline-block;
+}
+
+/* Afficher masquer block cookie */
+#container
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#cookie
+{
+	display:none;
+	background: #F2F2F2;
+	padding:1%;
+}
+
+#afficher:target #cookie
+{
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%);
+	width:98%;
+}
+
+.masquer
+{
+	display:none;
+}
+
+#afficher:target .masquer
+{
+	display:inline;
+}
+
+#afficher:target .afficher
+{
+	display:none;
+}
+
+/* Afficher masquer block politique confidentialite*/
+#polConfidence
+{
+	display:none;
+	background: #F2F2F2;
+	padding:1%;
+}
+
+#afficher2:target #polConfidence
+{
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%);
+	width:98%;
+}
+
+.masquer2
+{
+	display:none;
+}
+
+#afficher2:target .masquer2
+{
+	display:inline;
+}
+
+#afficher2:target .afficher2
+{
+	display:none;
+}
+
+/* Politique infos personnelles*/
+#polInfoPerso
+{
+	display:none;
+	background: #F2F2F2;
+	padding:1%;
+}
+
+#afficher3:target #polInfoPerso
+{
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%);
+	width:98%;
+}
+
+.masquer3
+{
+	display:none;
+}
+
+#afficher3:target .masquer3
+{
+	display:inline;
+}
+
+#afficher3:target .afficher3
+{
+	display:none;
+}
+
+/* FIN STYLE FOOTER */
