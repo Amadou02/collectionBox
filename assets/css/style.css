@@ -152,3 +152,38 @@ footer
 }
 
 /* FIN STYLE FOOTER */
+/* BLBLBLBLBLBLBLBLBLBLBLB */
+header{
+  background-image: url(../img/header-bg.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 30vh;
+}
+
+header>div{
+  height: 100%;
+}
+
+h1{
+  color: white;
+  font-size: 5rem;
+  -webkit-text-stroke : 3px #4F3423;
+}
+
+nav li{
+  font-size: 1.2rem;
+}
+
+.bg-brown{
+  background-color: rgba(79, 52, 35, 1);
+}
+
+.form-control{
+  width: 200px;
+}
+
+@media screen and (max-width: 992px) {
+  #pipe-bar{
+    display: none;
+  }
+}
