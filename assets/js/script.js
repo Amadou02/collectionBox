@@ -145,10 +145,10 @@ var arrayOeuvre = [oeuvre1, oeuvre2, oeuvre3, oeuvre4];
 var arrayMeuble = [meuble1, meuble2, meuble3, meuble4];
 var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
 
-var allContent = {
-  'piece':arrayPiece,
-  'timbre':arrayTimbre,
-  'oeuvre':arrayOeuvre,
-  'meuble':arrayMeuble,
-  'voiture':arrayVoiture
-};
+var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
+
+for (var i = 0; i < arrayContent.length - 1; i++) {
+  for (var y = 0; i < arrayContent[i].length - 1; i++) {
+    $('#content').append(`<img src="assets/img/${arrayContent[i][y]["img"]}" />`);
+  }
+}
