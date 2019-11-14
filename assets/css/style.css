@@ -1,28 +1,20 @@
-main
-{
+/* MAIN START */
+main{
 	background-color: #f2f2f2;
-	height: auto;
-	padding: 30px;
-
 }
-
-/* Format d'affichage pour les articles*/
-.cardArticle{
-	width: 320px;
+.article{
+	margin-left: 5px;
+	margin-right: 5px;
 	background-color: white;
 	height: auto;
-	-webkit-box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
-	-moz-box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
-	box-shadow: 7px 9px 5px -6px rgba(0,0,0,0.75);
-	border: 1px solid #dfdede;
+	-webkit-box-shadow: 2px 3px 3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 3px 3px rgba(0,0,0,0.75);
+	box-shadow: 2px 3px 3px rgba(0,0,0,0.75);
 	overflow: hidden;
-	border-radius: 15px;
-	margin-top: 80px;
-	margin-left: 2%;
-	margin-right: 2%;
+	margin-top: 30px;
 }
 
-.txt_small
+.text-footer
 {
 	word-break: normal;
 	margin: auto;
@@ -31,14 +23,51 @@ main
 	margin-top: 10px;
 }
 
-/* DEBUT STYLE FOOTER */
+#content{
+	padding-bottom: 50px;
+}
+/* MAIN END */
+
+/* HEADER START */
+header{
+  background-image: url(../img/header-bg.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 30vh;
+}
+
+header>div{
+  height: 100%;
+}
+
+h1{
+  color: white;
+  font-size: 9rem;
+  -webkit-text-stroke : 2px #4F3423;
+	font-family: "Dancing Script";
+}
+
+nav li{
+  font-size: 1.2rem;
+}
+
+.bg-brown{
+  background-color: rgba(79, 52, 35, 1);
+}
+
+.form-control{
+  width: 200px;
+}
+/* HEADER END */
+
+/* FOOTER START */
 footer
 {
 	background-color: #F2F2F2;
 	display: flex;
 	justify-content: space-around;
 	position: relative;
-	padding-top: 40px;
+	/* padding-top: 40px; */
 }
 
 .blockEnLigne
@@ -151,39 +180,27 @@ footer
 	display:none;
 }
 
-/* FIN STYLE FOOTER */
-/* BLBLBLBLBLBLBLBLBLBLBLB */
-header{
-  background-image: url(../img/header-bg.jpg);
-  background-position: center;
-  background-size: cover;
-  height: 30vh;
-}
-
-header>div{
-  height: 100%;
-}
-
-h1{
-  color: white;
-  font-size: 5rem;
-  -webkit-text-stroke : 3px #4F3423;
-}
-
-nav li{
-  font-size: 1.2rem;
-}
-
-.bg-brown{
-  background-color: rgba(79, 52, 35, 1);
-}
-
-.form-control{
-  width: 200px;
-}
+/* FOOTER END */
 
 @media screen and (max-width: 992px) {
   #pipe-bar{
     display: none;
   }
+	h1{
+		font-size: 7rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+
+	h1{
+		font-size: 5rem;
+	}
+}
+
+@media screen and (max-width: 375px) {
+
+	h1{
+		font-size: 4rem;
+	}
 }
