@@ -1,5 +1,5 @@
 $(function(){
-
+// Base de données articles
   var piece1 = {
     'categorie':'piece',
     'nom':'Triens or du VIIème siècle',
@@ -161,14 +161,15 @@ $(function(){
     'img':'V04'
   };
 
+// Initialisation des arrays
   var arrayPiece = [piece1, piece2, piece3, piece4];
   var arrayTimbre = [timbre1, timbre2, timbre3, timbre4];
   var arrayOeuvre = [oeuvre1, oeuvre2, oeuvre3, oeuvre4];
   var arrayMeuble = [meuble1, meuble2, meuble3, meuble4];
   var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
-
   var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
 
+// Fonction créant les blocs articles
   $(arrayContent).each(function(i){
     $(arrayContent[i]).each(function(y){
       $('#content').append(`
@@ -188,7 +189,8 @@ $(function(){
       });
     });
 
-    $('#piece, #timbre, #oeuvre, #meuble, #voiture').click(function(){
+// Fonction permettant d'afficher la catégorie voulue
+    $('#home, #piece, #timbre, #oeuvre, #meuble, #voiture').click(function(){
       let button = this.id;
       $('.piece, .timbre, .oeuvre, .meuble, .voiture').css('display', 'block');
       if (button == 'piece') {
@@ -203,7 +205,7 @@ $(function(){
       else if (button == 'meuble') {
         $('.timbre, .oeuvre, .piece, .voiture').css('display', 'none');
       }
-      else {
+      else if (button == 'voiture') {
         $('.timbre, .oeuvre, .meuble, .piece').css('display', 'none');
       }
     });
