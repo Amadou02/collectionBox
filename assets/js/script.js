@@ -152,8 +152,19 @@ $(function(){
   $(arrayContent).each(function(i){
     $(arrayContent[i]).each(function(y){
       $('#content').append(`
-        <img src="assets/img/${arrayContent[i][y]["img"]}" style="width:100px;height:100px;" />`);
+        <div class="col-lg-3 article timbre">
+        <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}" alt="">
+        <div>
+          <h4>${arrayContent[i][y]["nom"]}</h4>
+          <p>${arrayContent[i][y]["description"]}</p>
+        </div>
+          <div>
+            <button type="button" class="btn-outline-info btn-sm" data-toggle="modal" data-target="#modalScrollable">
+            Description
+            </button>
+          </div>
+				</div>
+        `);
       });
     });
-
 });
