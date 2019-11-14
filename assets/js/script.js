@@ -1,144 +1,164 @@
 $(function(){
 
   var piece1 = {
+    'categorie':'piece',
     'nom':'Triens or du VIIème siècle',
     'prix':'1680',
     'quantite':'1',
     'description':'Mérovingens BAVDOMERE OR 1.26grs,Avers: + CABILO - NO FIT., Revers: + BAVDOMERES MONETARIVS. ,TTB+ ',
-    'img':'P01.jpg'
+    'img':'P01'
   };
   var piece2 = {
+    'categorie':'piece',
     'nom':'Double Henri d\'or 1er type',
     'prix':'5000',
     'quantite':'1',
     'description':'Monnaie, France, François II (1559-1560), Double Henri d\'or, 1560, Poitiers, TTB, Or Buste à cuirasse damasquinée de Henri II à droite Croix formée de 4 H couronnés, au centre la lettre d\'atelier, croissants en 1 et 3 et fleurs de lis en 2 et 4. HENRICVS.II.D.G.FRANC.REX Pièce de monnaie fabriquée au nom de Henri II',
-    'img':'P02.jpg'
+    'img':'P02'
   };
   var piece3 = {
+    'categorie':'piece',
     'nom':'30 Sols au génie 1791',
     'prix':'112',
     'quantite':'2',
     'description':'argent 10grs',
-    'img':'P03.jpg'
+    'img':'P03'
   };
   var piece4 = {
+    'categorie':'piece',
     'nom':'1 francs 1908',
     'prix':'6',
     'quantite':'5',
     'description':'Date de 1908',
-    'img':'P04.jpg'
+    'img':'P04'
   };
   var timbre1 = {
+    'categorie':'timbre',
     'nom':'TIMBRE NAPOLEON N°18',
     'prix':'560',
     'quantite':'1',
     'description':'TIMBRE NAPOLEON N°18  - 1 Fr. neuf* réimpression 1862  signé Calvès   défaut avec clair.  voir photos  Côte 2200€',
-    'img':'T01.jpg'
+    'img':'T01'
   };
   var timbre2 = {
+    'categorie':'timbre',
     'nom':'10F orange Arc de Triomphe',
     'prix':'8',
     'quantite':'4',
     'description':'Neuf sans trace de charnière. Très beau.',
-    'img':'T02.jpg'
+    'img':'T02'
   };
   var timbre3 = {
+    'categorie':'timbre',
     'nom':'Timbre poste 0,30',
     'prix':'0.31',
     'quantite':'10',
     'description':'TIMBRE POSTE N° 1509 OBLITERE',
-    'img':'T03.jpg'
+    'img':'T03'
   };
   var timbre4 = {
+    'categorie':'timbre',
     'nom':'FRANCE Sage 35c',
     'prix':'200',
     'quantite':'1',
     'description':'FRANCE Sage n°93* 35c centrage courant frais signé Calves',
-    'img':'T04.jpg'
+    'img':'T04'
   };
   var oeuvre1 = {
+    'categorie':'oeuvre',
     'nom':'Tableau thème marine signé Mabille',
     'prix':'100',
     'quantite':'1',
     'description':'Bon état général. Dimensions 61 x 38 cm',
-    'img':'O01.jpg'
+    'img':'O01'
   };
   var oeuvre2 = {
+    'categorie':'oeuvre',
     'nom':'Les 3 roses',
     'prix':'25',
     'quantite':'1',
     'description':'Huile sur Toile de Bernard Le Béguec Format F3 27cm sur 22cm',
-    'img':'O02.jpg'
+    'img':'O02'
   };
   var oeuvre3 = {
+    'categorie':'oeuvre',
     'nom':'Margueritte Deval – La devinette des Maturins',
     'prix':'10',
     'quantite':'2',
     'description':' Lithographie originale, signée  par l\'artiste, en haut à droite Tirée de la revue  "  LE  RIRE "   n° 274   du 3 fev.1900 , Feuille  seule  -  Publicités au dos .   Dimensions : 23 x 31 cm  Excellent état',
-    'img':'O03.jpg'
+    'img':'O03'
   };
   var oeuvre4 = {
+    'categorie':'oeuvre',
     'nom':'Litho CHARENTON les CARRIERES',
     'prix':'15',
     'quantite':'3',
     'description':'RARE )  GUERRE  FRANCO  ALLEMANDE  1870 - 1871 SIEGE  DE  PARIS   1870         Militaria - CHARENTON LES CARRIERES  :  RETOUR A PARIS , 28 JANVIER 1871 . - Bérod, Editeur. (Paris) -- Date d´édition :…',
-    'img':'O04.jpg'
+    'img':'O04'
   };
   var meuble1 = {
+    'categorie':'meuble',
     'nom':'Cabinet italien ',
     'prix':'3600',
     'quantite':'1',
     'description':'Epoque : 18ème siècle Etat : En l\'état  Matière : Placage Longueur : 78,5 Hauteur : 62 Profondeur : 35,5',
-    'img':'M01.jpg'
+    'img':'M01'
   };
   var meuble2 = {
+    'categorie':'meuble',
     'nom':'Petit Argentier De Style Louis XVI ',
     'prix':'1150',
     'quantite':'2',
     'description':'poque : 19ème siècle Etat : Bon état  Matière : Noyer Largeur : 124 Hauteur : 210 Profondeur : 58',
-    'img':'M02.jpg'
+    'img':'M02'
   };
   var meuble3 = {
+    'categorie':'meuble',
     'nom':'Cave à Liqueurs Fin 19ème ',
     'prix':'320',
     'quantite':'5',
     'description':'Epoque : 19ème siècle Etat : Très bon état  Matière : Cristal et carton Longueur : 27cm Hauteur : 23cm Profondeur : 21cm',
-    'img':'M03.jpg'
+    'img':'M03'
   };
   var meuble4 = {
+    'categorie':'meuble',
     'nom':'Étagère Japonisante',
     'prix':'1850',
     'quantite':'2',
     'description':'De Gabriel Viardot D’époque Napoléon III, Artiste : Gabriel Viardot Epoque : 19ème siècle Etat : Bon état  Matière : Bois sculpté Largeur : 79 cm Hauteur : 75 cm Profondeur : 26 cm',
-    'img':'M04.jpg'
+    'img':'M04'
   };
   var voiture1 = {
+    'categorie':'voiture',
     'nom':'Renault 4CV 1960',
     'prix':'19950',
     'quantite':'1',
     'description':'Points forts: -Magnifiquement restauré -Belle couleur bleu azur -Pare-chocs chromés -Tableau de bord blanc - Volant à deux branches - Sièges tissus gris/rouge',
-    'img':'V01.jpg'
+    'img':'V01'
   };
   var voiture2 = {
+    'categorie':'voiture',
     'nom':'Triumph TR4A IRS 1966 ',
     'prix':'36950',
     'quantite':'1',
     'description':' Triumph TR4A IRS 1966 Overdrive  Points forts: - Belle couleur rouge - Jantes à rayons chromés - Overdrive - Feux antibrouillard - Capote Mohair - Sellerie luxe avec appuie-tête',
-    'img':'V02.jpg'
+    'img':'V02'
   };
   var voiture3 = {
+    'categorie':'voiture',
     'nom':'Austin Healey Sprite MK1 1960',
     'prix':'24950',
     'quantite':'1',
     'description':'Points forts: - Version "Frogeye" MK1 - Moteur 1275cc avec carburateur Weber - Très bon état - Volant en bois Moto-Lita - Belle couleur noire',
-    'img':'V03.jpg'
+    'img':'V03'
   };
   var voiture4 = {
+    'categorie':'voiture',
     'nom':'Mercedes-Benz 190SL 1956',
     'prix':'99000',
     'quantite':'1',
     'description':'Points forts • Moteur restauré • Bien entretenue • Peinture rouge',
-    'img':'V04.jpg'
+    'img':'V04'
   };
 
   var arrayPiece = [piece1, piece2, piece3, piece4];
@@ -152,14 +172,14 @@ $(function(){
   $(arrayContent).each(function(i){
     $(arrayContent[i]).each(function(y){
       $('#content').append(`
-        <div class="col-lg-3 article timbre">
-        <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}" alt="">
+        <div class="col-lg-3 article ${arrayContent[i][y]["categorie"]}">
+        <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}.jpg" alt="">
         <div>
           <h4>${arrayContent[i][y]["nom"]}</h4>
           <p>${arrayContent[i][y]["description"]}</p>
         </div>
           <div>
-            <button type="button" class="btn-outline-info btn-sm" data-toggle="modal" data-target="#modalScrollable">
+            <button id="${arrayContent[i][y]["img"]}" type="button" class="btn-outline-info btn-sm" data-toggle="modal" data-target="#modalScrollable">
             Description
             </button>
           </div>
@@ -167,4 +187,25 @@ $(function(){
         `);
       });
     });
+
+    $('#piece, #timbre, #oeuvre, #meuble, #voiture').click(function(){
+      let button = this.id;
+      $('.piece, .timbre, .oeuvre, .meuble, .voiture').css('display', 'block');
+      if (button == 'piece') {
+        $('.timbre, .oeuvre, .meuble, .voiture').css('display', 'none');
+      }
+      else if (button == 'timbre') {
+        $('.piece, .oeuvre, .meuble, .voiture').css('display', 'none');
+      }
+      else if (button == 'oeuvre') {
+        $('.timbre, .piece, .meuble, .voiture').css('display', 'none');
+      }
+      else if (button == 'meuble') {
+        $('.timbre, .oeuvre, .piece, .voiture').css('display', 'none');
+      }
+      else {
+        $('.timbre, .oeuvre, .meuble, .piece').css('display', 'none');
+      }
+    });
+
 });
