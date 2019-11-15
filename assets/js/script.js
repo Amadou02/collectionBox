@@ -217,7 +217,7 @@ $(function() {
         $('.tail-description').css('display', 'none');
     })
 
-    // Fonction ajoutant élements au panier
+    // Fonction ajoutant +1 au nombre d'element du panier
     $('.addShoppingBag').click(function() {
         ++inShoppingBag;
         if (inShoppingBag > 0) {
@@ -231,7 +231,7 @@ $(function() {
     var bagArray = [];
 
 
-    // Fonction ajoutant élements au panier
+    // Fonction ajoutant élements dans la modale du panier
     function writeShoppingBag(id) {
         let isFound = false;
         $(arrayContent).each(function(i) {
@@ -263,7 +263,6 @@ $(function() {
                 }
             })
         })
-
     }
 
     // Fonction permettant d'afficher la catégorie voulue
