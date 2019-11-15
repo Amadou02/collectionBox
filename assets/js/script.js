@@ -230,7 +230,6 @@ $(function() {
 
     var bagArray = [];
 
-
     // Fonction ajoutant élements dans la modale du panier
     function writeShoppingBag(id) {
         let isFound = false;
@@ -248,15 +247,17 @@ $(function() {
                         bagArray.push(1);
                     }
                     $('#modalBag .modal-body').html('');
+                    $('#modalBag .modal-footer>span').html('');
                     $(bagArray).each(function(i) {
                         $(arrayContent).each(function(x) {
                             $(arrayContent[x]).each(function(y) {
                                 if (bagArray[i] == arrayContent[x][y]['img']) {
                                     $('#modalBag .modal-body').append(`
-                        <div>${arrayContent[x][y]['nom']}</div>
-                        <div>${bagArray[i+1]}</div>
-                        `)
+                                        <div>${arrayContent[x][y]['nom']}</div>
+                                        <div>${bagArray[i+1]}</div>
+                                    `)
                                 }
+
                             })
                         })
                     })
@@ -264,6 +265,25 @@ $(function() {
                 }
             })
         })
+        $('#modalBag .modal-footer>span').append(`
+            <span>Prix total à payer : ${calcTotalPrice()} €</span>
+        `);
+    }
+
+    function calcTotalPrice(){
+      let totalPrice = 0;
+      $(bagArray).each(function(i){
+        if (!isNaN(bagArray[i])) {
+          $(arrayContent).each(function(x){
+            $(arrayContent[x]).each(function(y){
+              if (bagArray[i-1] == arrayContent[x][y]['img']){
+                totalPrice = totalPrice + (bagArray[i] * parseFloat(arrayContent[x][y]['prix']));
+              }
+            })
+          })
+        }
+      })
+      return totalPrice;
     }
 
     // Fonction permettant d'afficher la catégorie voulue
