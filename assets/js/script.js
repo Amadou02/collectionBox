@@ -1,4 +1,5 @@
 $(function(){
+  var inShoppingBag = 0;
 // Base de données articles
   var piece1 = {
     'categorie':'piece',
@@ -169,25 +170,74 @@ $(function(){
   var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
   var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
 
+
+
 // Fonction créant les blocs articles
   $(arrayContent).each(function(i){
     $(arrayContent[i]).each(function(y){
       $('#content').append(`
-        <div class="col-lg-3 article ${arrayContent[i][y]["categorie"]}">
-        <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}.jpg" alt="">
-        <div>
-          <h4>${arrayContent[i][y]["nom"]}</h4>
-          <p>${arrayContent[i][y]["description"]}</p>
-        </div>
+        <div id="${arrayContent[i][y]["img"]}" class="col-lg-3 article ${arrayContent[i][y]["categorie"]}">
+          <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}.jpg" alt="">
           <div>
-            <button id="${arrayContent[i][y]["img"]}" type="button" class="btn-outline-info btn-sm" data-toggle="modal" data-target="#modalScrollable">
-            Description
-            </button>
-          </div>
-				</div>
+            <h4>${arrayContent[i][y]["nom"]}</h4>
+            <p>${arrayContent[i][y]["description"]}</p>
+            </div>
+            <div>
+              <button type="button" class="btn-outline-info btn-sm addShoppingBag">
+                Ajouter au panier
+              </button>
+            </div>
+				  </div>
+        </div>
         `);
       });
     });
+
+    $('.article').mouseover(function(){
+      let elementOver = this.id;
+      let description;
+      $(arrayContent).each(function(i){
+        $(arrayContent[i]).each(function(y){
+          if (arrayContent[i][y]['img'] == elementOver) {
+            description = arrayContent[i][y]['description'];
+          }
+        })
+      })
+      $('.tail-description>p').html(description);
+      $('.tail-description').css('display', 'block');
+      $(document).bind('mousemove', function(e){
+        $('.tail-description').css({
+          left:  e.pageX + 20,
+          top:   e.pageY
+        });
+      });
+    })
+
+    $('.article').mouseout(function(){
+      $('.tail-description').css('display', 'none');
+    })
+
+    $('.addShoppingBag').click(function(){
+      ++inShoppingBag;
+      if (inShoppingBag > 0) {
+        $('#shopping-number').css('background-color', 'green');
+      }
+      $('#shopping-number').html(`${inShoppingBag}`);
+      let elementClicked = $(this).parents('div').parents('div').attr('id');
+      writeShoppingBag(elementClicked);
+    })
+
+    function writeShoppingBag(id){
+      $(arrayContent).each(function(i){
+        $(arrayContent[i]).each(function(y){
+          if (arrayContent[i][y]['img'] == id) {
+            $('#modalBag .modal-body').append(`
+              <p>${arrayContent[i][y]['nom']}</p>
+              `)
+          }
+        })
+      })
+    }
 
 // Fonction permettant d'afficher la catégorie voulue
     $('#home, #piece, #timbre, #oeuvre, #meuble, #voiture').click(function(){

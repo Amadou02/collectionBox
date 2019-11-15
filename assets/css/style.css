@@ -38,6 +38,15 @@ main{
 #content{
   padding-bottom: 50px;
 }
+
+.tail-description{
+  position: absolute;
+  float: right;
+  display: none;
+  background-color: white;
+  width: 300px;
+  border: 2px solid black;
+}
 /* MAIN END */
 
 /* HEADER START */
@@ -69,6 +78,12 @@ nav li{
 
 .form-control{
   width: 200px;
+}
+
+#shopping-number{
+  width: 30px;
+  height: 30px;
+  background-color: red;
 }
 /* HEADER END */
 
