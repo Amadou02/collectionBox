@@ -169,6 +169,7 @@ $(function() {
     var arrayMeuble = [meuble1, meuble2, meuble3, meuble4];
     var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
     var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
+    var bagArray = [];
 
     // Fonction créant les blocs articles
     $(arrayContent).each(function(i) {
@@ -228,8 +229,6 @@ $(function() {
         writeShoppingBag(elementClicked);
     })
 
-    var bagArray = [];
-
     // Fonction ajoutant élements dans la modale du panier
     function writeShoppingBag(id) {
         let isFound = false;
@@ -270,6 +269,7 @@ $(function() {
         `);
     }
 
+    // Fonction calculant le prix total des élements du panier
     function calcTotalPrice(){
       let totalPrice = 0;
       $(bagArray).each(function(i){
