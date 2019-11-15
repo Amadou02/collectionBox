@@ -1,7 +1,7 @@
 body{
 	background: url(../img/papier.jpg);
 	background-size: 100%, auto;
-	
+
 }
 .smallImg{
   width: 100%;
@@ -30,7 +30,7 @@ main{
 	overflow: hidden;
 	margin-top: 30px;
 	padding-bottom: 5px;
-	border-radius: 0 10px 10px 0;
+	border-radius: 10px;
 }
 
 .text-footer
@@ -59,6 +59,7 @@ main{
   background-color: white;
   width: 300px;
   border: 2px solid black;
+  padding: 15px;
 }
 /* MAIN END */
 
