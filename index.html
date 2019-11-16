@@ -37,8 +37,7 @@
 								<span>0</span>
 							</div>
 						</div>
-						<input class="form-control" type="text" name="search" placeholder="Rechercher...">
-						<button id="search" class="btn btn-light ml-3" type="button" name="button"><i class="fas fa-search"></i></button>
+						<input id="input-search" class="form-control" type="text" name="search" placeholder="Rechercher...">
 					</div>
 				</div>
 			</nav>
@@ -123,8 +122,8 @@
 		</div>
 		<!-- fin modale de description des articles -->
 		<!-- modale panier -->
-		<div class="modal" id="modalBag" tabindex="-1" role="dialog" aria-labelledby="modalBagLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal fade" id="modalBag" tabindex="-1" role="dialog" aria-labelledby="modalBagLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="modalBagLabel">
@@ -142,6 +141,7 @@
 					</div>
 					<div class="modal-footer">
 						<span class="text-left">Prix total : 0€</span>
+						<button id="buy" type="button" class="btn btn-primary">Acheter !</button>
 					</div>
 				</div>
 			</div>

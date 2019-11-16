@@ -161,7 +161,7 @@ $(function() {
         'img': 'V04'
     };
 
-    // Initialisation des arrays
+    // Initialisation des arrays & variables
     var arrayPiece = [piece1, piece2, piece3, piece4];
     var arrayTimbre = [timbre1, timbre2, timbre3, timbre4];
     var arrayOeuvre = [oeuvre1, oeuvre2, oeuvre3, oeuvre4];
@@ -218,7 +218,7 @@ $(function() {
         $('.tail-description').css('display', 'none');
     })
 
-    // Fonction ajoutant +1 au nombre d'element du panier
+    // Fonction ajoutant +1 au nombre d'element du panier sur le front
     $('.addShoppingBag').click(function() {
         ++inShoppingBag;
         if (inShoppingBag > 0) {
@@ -230,6 +230,8 @@ $(function() {
     })
 
     // Fonction ajoutant élements dans la modale du panier
+    var once = false;
+
     function writeShoppingBag(id) {
         let isFound = false;
         $(arrayContent).each(function(x) {
@@ -256,6 +258,12 @@ $(function() {
                                         <span>${arrayContent[x][y]['nom']}</span>
                                         <div class="d-flex align-items-center">
                                           <span>${bagArray[i+1]}</span>
+                                          <button type="button" class="btn-outline-info btn-sm ml-2 addShoppingBagOne">
+                                             +
+                                          </button>
+                                          <button type="button" class="btn-outline-info btn-sm ml-2 removeShoppingBagOne">
+                                             -
+                                          </button>
                                           <button type="button" class="btn-outline-info btn-sm ml-2 removeShoppingBag">
                                              X
                                           </button>
@@ -269,7 +277,12 @@ $(function() {
                 }
             })
         })
-        $(document).on('click', 'button.removeShoppingBag', deleteShoppingBag);
+        if (!once) {
+            $(document).on('click', 'button.removeShoppingBag', deleteShoppingBag);
+            $(document).on('click', 'button.removeShoppingBagOne', oneDeleteShoppingBag);
+            $(document).on('click', 'button.addShoppingBagOne', oneAddShoppingBag);
+        }
+        once = true;
         calcTotalPrice();
     }
 
@@ -297,6 +310,54 @@ $(function() {
         })
     }
 
+    // Fonction -1 panier
+    function oneDeleteShoppingBag() {
+        let ref = $(this).parents('div').parents('div').attr('class');
+        ref = ref.substr(0, 3);
+        $(bagArray).each(function(i) {
+            if (bagArray[i] == ref) {
+                bagArray[i + 1] = --bagArray[i + 1]
+                    --inShoppingBag;
+                if (inShoppingBag == 0) {
+                    $('#shopping-number').css('background-color', 'red');
+                }
+                $('#shopping-number').html(`${inShoppingBag}`);
+                if (inShoppingBag == 0) {
+                    $('#modalBag .modal-body').append(`
+                <p>Votre panier est vide !</p>
+                `)
+                }
+                if (bagArray[i + 1] == 0) {
+                    $(`.${ref}`).remove();
+                    bagArray.splice(i, 2);
+                }
+                $(`.${ref}>div>span`).html('');
+                $(`.${ref}>div>span`).append(`
+            ${bagArray[i+1]}
+            `);
+            }
+        })
+        calcTotalPrice();
+    }
+
+    // Fonction +1 panier
+    function oneAddShoppingBag() {
+        let ref = $(this).parents('div').parents('div').attr('class');
+        ref = ref.substr(0, 3);
+        $(bagArray).each(function(i) {
+            if (bagArray[i] == ref) {
+                bagArray[i + 1] = ++bagArray[i + 1]
+                    ++inShoppingBag;
+                $('#shopping-number').html(`${inShoppingBag}`);
+                $(`.${ref}>div>span`).html('');
+                $(`.${ref}>div>span`).append(`
+            ${bagArray[i+1]}
+            `);
+            }
+        })
+        calcTotalPrice();
+    }
+
     // Fonction calculant le prix total des élements du panier
     function calcTotalPrice() {
         let totalPrice = 0;
@@ -313,9 +374,23 @@ $(function() {
         })
         $('#modalBag .modal-footer>span').html('');
         $('#modalBag .modal-footer>span').append(`
-          <span>Prix total à payer : ${totalPrice} €</span>
+          Prix total à payer : ${totalPrice} €
           `);
     }
+
+    // Fonction recherche
+    $('#input-search').keyup(function() {
+        $('#content>div').css('display', 'none')
+        let input = $(this).val();
+        let regexp = new RegExp(`${input}`, 'i');
+        $(arrayContent).each(function(x) {
+            $(arrayContent[x]).each(function(y) {
+                if ((regexp.test(arrayContent[x][y]['nom'])) || (regexp.test(arrayContent[x][y]['categorie'])) || (regexp.test(arrayContent[x][y]['description']))) {
+                    $(`#${arrayContent[x][y]['img']}`).css('display', 'block');
+                }
+            })
+        })
+    })
 
     // Fonction permettant d'afficher la catégorie voulue
     $('#home, #piece, #timbre, #oeuvre, #meuble, #voiture').click(function() {
@@ -333,4 +408,24 @@ $(function() {
             $('.timbre, .oeuvre, .meuble, .piece').css('display', 'none');
         }
     });
+
+    // Affiche une alerte quand on clique sur le bouton acheter de la modale, et réinitialise toutes les variables et l'ui
+    $('#buy').click(function() {
+        if (inShoppingBag > 0) {
+            alert('Merci pour votre achat !');
+            $('#modalBag .modal-body').html('');
+            bagArray = [];
+            inShoppingBag = 0;
+            $('#shopping-number').html(`${inShoppingBag}`);
+            $('#shopping-number').css('background-color', 'red');
+            calcTotalPrice();
+            return;
+        }
+        alert('Votre panier est vide !')
+    })
+
+    // Fonction de test et de debug
+    $('button').click(function() {
+        console.log(bagArray);
+    })
 });
