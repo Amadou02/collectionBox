@@ -1,7 +1,7 @@
 body {
 	background: url(../img/papier.jpg);
 	background-size: 100%, auto;
-
+	overflow-x: hidden;
 }
 
 .smallImg {

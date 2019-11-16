@@ -1,5 +1,4 @@
 $(function() {
-    var inShoppingBag = 0;
     // Base de données articles
     var piece1 = {
         'categorie': 'piece',
@@ -170,16 +169,17 @@ $(function() {
     var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
     var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
     var bagArray = [];
+    var inShoppingBag = 0;
 
     // Fonction créant les blocs articles
-    $(arrayContent).each(function(i) {
-        $(arrayContent[i]).each(function(y) {
+    $(arrayContent).each(function(x) {
+        $(arrayContent[x]).each(function(y) {
             $('#content').append(`
-        <div id="${arrayContent[i][y]["img"]}" class="col-lg-3 article ${arrayContent[i][y]["categorie"]}">
-          <img class="smallImg img-fluid" src="assets/img/${arrayContent[i][y]["img"]}.jpg" alt="">
+        <div id="${arrayContent[x][y]["img"]}" class="col-lg-3 article ${arrayContent[x][y]["categorie"]}">
+          <img class="smallImg img-fluid" src="assets/img/${arrayContent[x][y]["img"]}.jpg" alt="">
           <div>
-            <h4 class="text-center">${arrayContent[i][y]["nom"]}</h4>
-            <p class="text-center">${arrayContent[i][y]["prix"]} €</p>
+            <h4 class="text-center">${arrayContent[x][y]["nom"]}</h4>
+            <p class="text-center">${arrayContent[x][y]["prix"]} €</p>
             </div>
             <div class="d-flex justify-content-center">
               <button type="button" class="btn-outline-info btn-sm addShoppingBag">
@@ -196,10 +196,10 @@ $(function() {
     $('.article').mouseover(function() {
         let elementOver = this.id;
         let description;
-        $(arrayContent).each(function(i) {
-            $(arrayContent[i]).each(function(y) {
-                if (arrayContent[i][y]['img'] == elementOver) {
-                    description = arrayContent[i][y]['description'];
+        $(arrayContent).each(function(x) {
+            $(arrayContent[x]).each(function(y) {
+                if (arrayContent[x][y]['img'] == elementOver) {
+                    description = arrayContent[x][y]['description'];
                 }
             })
         })
@@ -232,9 +232,9 @@ $(function() {
     // Fonction ajoutant élements dans la modale du panier
     function writeShoppingBag(id) {
         let isFound = false;
-        $(arrayContent).each(function(i) {
-            $(arrayContent[i]).each(function(y) {
-                if (arrayContent[i][y]['img'] == id) {
+        $(arrayContent).each(function(x) {
+            $(arrayContent[x]).each(function(y) {
+                if (arrayContent[x][y]['img'] == id) {
                     $(bagArray).each(function(i) {
                         if (bagArray[i] == id) {
                             ++bagArray[i + 1]
@@ -252,38 +252,69 @@ $(function() {
                             $(arrayContent[x]).each(function(y) {
                                 if (bagArray[i] == arrayContent[x][y]['img']) {
                                     $('#modalBag .modal-body').append(`
-                                        <div>${arrayContent[x][y]['nom']}</div>
-                                        <div>${bagArray[i+1]}</div>
+                                      <div class="${arrayContent[x][y]['img']} d-flex justify-content-between align-items-center">
+                                        <span>${arrayContent[x][y]['nom']}</span>
+                                        <div class="d-flex align-items-center">
+                                          <span>${bagArray[i+1]}</span>
+                                          <button type="button" class="btn-outline-info btn-sm ml-2 removeShoppingBag">
+                                             X
+                                          </button>
+                                        </div>
+                                      </div>
                                     `)
                                 }
-
                             })
                         })
                     })
-
                 }
             })
         })
-        $('#modalBag .modal-footer>span').append(`
-            <span>Prix total à payer : ${calcTotalPrice()} €</span>
-        `);
+        $(document).on('click', 'button.removeShoppingBag', deleteShoppingBag);
+        calcTotalPrice();
+    }
+
+    // Fonction permettant de supprimer un élement du panier
+    function deleteShoppingBag() {
+        let id = $(this).parents('div').parents('div').attr('class');
+        id = id.substr(0, 3);
+        $(bagArray).each(function(i) {
+            if (bagArray[i] == id) {
+                let quantite = bagArray[i + 1];
+                bagArray.splice(i, 2);
+                $(`.${id}`).remove();
+                inShoppingBag = inShoppingBag - quantite;
+                if (inShoppingBag == 0) {
+                    $('#shopping-number').css('background-color', 'red');
+                }
+                $('#shopping-number').html(`${inShoppingBag}`);
+                if (inShoppingBag == 0) {
+                    $('#modalBag .modal-body').append(`
+                      <p>Votre panier est vide !</p>
+                      `)
+                }
+                calcTotalPrice();
+            }
+        })
     }
 
     // Fonction calculant le prix total des élements du panier
-    function calcTotalPrice(){
-      let totalPrice = 0;
-      $(bagArray).each(function(i){
-        if (!isNaN(bagArray[i])) {
-          $(arrayContent).each(function(x){
-            $(arrayContent[x]).each(function(y){
-              if (bagArray[i-1] == arrayContent[x][y]['img']){
-                totalPrice = totalPrice + (bagArray[i] * parseFloat(arrayContent[x][y]['prix']));
-              }
-            })
-          })
-        }
-      })
-      return totalPrice;
+    function calcTotalPrice() {
+        let totalPrice = 0;
+        $(bagArray).each(function(i) {
+            if (!isNaN(bagArray[i])) {
+                $(arrayContent).each(function(x) {
+                    $(arrayContent[x]).each(function(y) {
+                        if (bagArray[i - 1] == arrayContent[x][y]['img']) {
+                            totalPrice = totalPrice + (bagArray[i] * parseFloat(arrayContent[x][y]['prix']));
+                        }
+                    })
+                })
+            }
+        })
+        $('#modalBag .modal-footer>span').html('');
+        $('#modalBag .modal-footer>span').append(`
+          <span>Prix total à payer : ${totalPrice} €</span>
+          `);
     }
 
     // Fonction permettant d'afficher la catégorie voulue
@@ -302,5 +333,4 @@ $(function() {
             $('.timbre, .oeuvre, .meuble, .piece').css('display', 'none');
         }
     });
-
 });
