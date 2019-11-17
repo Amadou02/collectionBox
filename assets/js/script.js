@@ -168,21 +168,27 @@ $(function() {
     var arrayMeuble = [meuble1, meuble2, meuble3, meuble4];
     var arrayVoiture = [voiture1, voiture2, voiture3, voiture4];
     var arrayContent = [arrayPiece, arrayTimbre, arrayOeuvre, arrayMeuble, arrayVoiture];
-    var bagArray = [];
+    var arrayBag = [];
     var inShoppingBag = 0;
 
     // Fonction créant les blocs articles
+    // Double boucle permettant de parcourir chaque objets de chaque catégories
     $(arrayContent).each(function(x) {
         $(arrayContent[x]).each(function(y) {
+            // Créé les bloc article dans #content grace aux données des objets
             $('#content').append(`
         <div id="${arrayContent[x][y]["img"]}" class="col-lg-3 article ${arrayContent[x][y]["categorie"]}">
           <img class="smallImg img-fluid" src="assets/img/${arrayContent[x][y]["img"]}.jpg" alt="">
           <div>
             <h4 class="text-center">${arrayContent[x][y]["nom"]}</h4>
-            <p class="text-center">${arrayContent[x][y]["prix"]} €</p>
+            <p class="text-center">Prix : ${arrayContent[x][y]["prix"]} €</p>
             </div>
-            <div class="d-flex justify-content-center">
-              <button type="button" class="btn-outline-info btn-sm addShoppingBag">
+            <div class="d-flex justify-content-around">
+
+              <button class="btn-article toggleDescription" type="button" name="button" data-toggle="modal" data-target="#modalDescription">
+                Détails
+              </button>
+              <button type="button" class="btn-article addShoppingBag">
                 Ajouter au panier
               </button>
             </div>
@@ -192,72 +198,76 @@ $(function() {
         });
     });
 
-    // Fonction afichant la description de l'article en hover
-    $('.article').mouseover(function() {
-        let elementOver = this.id;
-        let description;
-        $(arrayContent).each(function(x) {
-            $(arrayContent[x]).each(function(y) {
-                if (arrayContent[x][y]['img'] == elementOver) {
-                    description = arrayContent[x][y]['description'];
-                }
-            })
-        })
-        $('.tail-description>p').html(description);
-        $('.tail-description').css('display', 'block');
-        $(document).bind('mousemove', function(e) {
-            $('.tail-description').css({
-                left: e.pageX + 20,
-                top: e.pageY
-            });
-        });
+    // Fonction remplissant la modale description
+    $('.toggleDescription').click(function(){
+      // permet de recup l'id du bloc sur lequel on a cliqué pour avoir sa référence
+      let ref = $(this).parents('div').parents('div').attr('id');
+      // Double boucle : on parcourt toute la base de données pour trouver les indices de tableau où se trouve l'objet possédant la ref récupérée au dessus
+      $(arrayContent).each(function(x) {
+          $(arrayContent[x]).each(function(y) {
+            // Si trouve la ref dans la base de donnée, alors :
+            if (arrayContent[x][y]['img'] == ref) {
+              // Remplis la modal description avec le nom, la description et le prix de la ref
+              $('#modalDescription .modal-title').html(`${arrayContent[x][y]['nom']}`);
+              $('#modalDescription .modal-body').html(`${arrayContent[x][y]['description']}`);
+              $('#modalDescription .modal-footer>span').html(`Prix : ${arrayContent[x][y]['prix']} €`);
+            }
+          });
+      });
     })
 
-    // Fonction effaçant la description quand le curseur est out
-    $('.article').mouseout(function() {
-        $('.tail-description').css('display', 'none');
-    })
-
-    // Fonction ajoutant +1 au nombre d'element du panier sur le front
+    // Fonction ajoutant +1 au nombre d'element du panier sur le front et déclenchant l'ajout dans le panier
     $('.addShoppingBag').click(function() {
+        // Ajoute +1 à la variable qui sauvegarde le nb d'élements présents dans le panier
         ++inShoppingBag;
-        if (inShoppingBag > 0) {
-            $('#shopping-number').css('background-color', 'green');
-        }
+        // Change la couleur du nombre à coté du panier en vert
+        $('#shopping-number').css('color', 'green');
+        // Affiche la nouvelle valeur de inShoppingBag
         $('#shopping-number').html(`${inShoppingBag}`);
+        // Récupère la ref de l'élement cliqué grace à l'ID de son parent puis apelle la fonction writeShoppingBag avec cette ref en argument
         let elementClicked = $(this).parents('div').parents('div').attr('id');
         writeShoppingBag(elementClicked);
     })
 
     // Fonction ajoutant élements dans la modale du panier
-    var once = false;
-
+    // variable corrigeant un bug de bouton, obligatoire
+    var initBagButtons = false;
     function writeShoppingBag(id) {
         let isFound = false;
+        // double boucle : on cherche la ref récupérée dans l'argument dans notre arrayContent
         $(arrayContent).each(function(x) {
             $(arrayContent[x]).each(function(y) {
+                // Quand il trouve la ref alors :
                 if (arrayContent[x][y]['img'] == id) {
-                    $(bagArray).each(function(i) {
-                        if (bagArray[i] == id) {
-                            ++bagArray[i + 1]
+                    // On boucle dans arrayBag (qui stocke les élements ajoutés au panier et leur quantité) pour vérifier si l'élement ajouté n'existe pas deja dans ce tableau
+                    $(arrayBag).each(function(i) {
+                        // Si on trouve la ref dans arrayBag alors :
+                        if (arrayBag[i] == id) {
+                            // +1 à la quantité de cette reference (la tableau est construit de cette façon, exemple : [P01 (la ref), 2 (sa quantité), T04, 5] etc, c'est pour ça qu'on ajoute +1 à l'indice i+1))
+                            ++arrayBag[i + 1]
+                            // isFound = true == on a trouvé l'élément dans arrayBag
                             isFound = true;
                         }
                     })
+                    // Si on a pas trouvé l'élément dans arrayBag alors :
                     if (!isFound) {
-                        bagArray.push(id);
-                        bagArray.push(1);
+                        // On ajoute a arrayBag cette ref, et une quantité egale à 1 pour celle-ci
+                        arrayBag.push(id);
+                        arrayBag.push(1);
                     }
+                    // On efface le contenu précédament présent dans la modale panier pour réécrire les nouvelles données
                     $('#modalBag .modal-body').html('');
                     $('#modalBag .modal-footer>span').html('');
-                    $(bagArray).each(function(i) {
+                    // Triple boucle : pour chaque ref présent dans arrayBag, on cherche les index de arrayContent menant à cette ref, pour ensuite utiliser ces index pour ajoute chaque élement dans la modale
+                    $(arrayBag).each(function(i) {
                         $(arrayContent).each(function(x) {
                             $(arrayContent[x]).each(function(y) {
-                                if (bagArray[i] == arrayContent[x][y]['img']) {
+                                if (arrayBag[i] == arrayContent[x][y]['img']) {
                                     $('#modalBag .modal-body').append(`
                                       <div class="${arrayContent[x][y]['img']} d-flex justify-content-between align-items-center">
                                         <span>${arrayContent[x][y]['nom']}</span>
                                         <div class="d-flex align-items-center">
-                                          <span>${bagArray[i+1]}</span>
+                                          <span>${arrayBag[i+1]}</span>
                                           <button type="button" class="btn-outline-info btn-sm ml-2 addShoppingBagOne">
                                              +
                                           </button>
@@ -277,49 +287,67 @@ $(function() {
                 }
             })
         })
-        if (!once) {
+        // Si cest la première fois qu'on ajoute un element au panier alors :
+        if (!initBagButtons) {
+            // ajoute le declenchement des différentes fonction aux boutons dans la modale panier
             $(document).on('click', 'button.removeShoppingBag', deleteShoppingBag);
             $(document).on('click', 'button.removeShoppingBagOne', oneDeleteShoppingBag);
             $(document).on('click', 'button.addShoppingBagOne', oneAddShoppingBag);
+            // change la valeur de initBagButtons pour ne plus rentrer dans la condition, sinon cela fait completement disfonctionner les boutons et ils déclenchent plusieurs fois d'affilé leurs fonctions
+            initBagButtons = true;
         }
-        once = true;
+        // Appel la fonction calculant le prix final de tous les articles du panier
         calcTotalPrice();
     }
 
     // Fonction permettant de supprimer un élement du panier
     function deleteShoppingBag() {
+        // recup les classe d'un div parent qui possède la ref dans ses classes
         let id = $(this).parents('div').parents('div').attr('class');
+        // On retire tout à la string sauf les 3 premiers caractère qui sont la ref
         id = id.substr(0, 3);
-        $(bagArray).each(function(i) {
-            if (bagArray[i] == id) {
-                let quantite = bagArray[i + 1];
-                bagArray.splice(i, 2);
+        $(arrayBag).each(function(i) {
+            // Boucle dans arrayBag, si index == ref cliquée
+            if (arrayBag[i] == id) {
+                // récupère la quantité de la ref
+                let quantite = arrayBag[i + 1];
+                // supprime de arrayBag la ref et sa quantité
+                arrayBag.splice(i, 2);
+                // supprime la div contenant la ref dans la modale panier
                 $(`.${id}`).remove();
+                // retire à inShoppingBag la quantité de la ref qu'on viens de supprimer
                 inShoppingBag = inShoppingBag - quantite;
+                // si inShoppingBag == 0, on change sa couleur en rouge
                 if (inShoppingBag == 0) {
-                    $('#shopping-number').css('background-color', 'red');
+                    $('#shopping-number').css('color', 'red');
                 }
+                // on affiche la nouvelle valeur de inShoppingBag
                 $('#shopping-number').html(`${inShoppingBag}`);
+                // Si inShoppingBag == 0, alors le panier est vide donc on affiche un message
                 if (inShoppingBag == 0) {
                     $('#modalBag .modal-body').append(`
                       <p>Votre panier est vide !</p>
                       `)
                 }
+                // calcule le nouveau prix total du panier
                 calcTotalPrice();
             }
         })
     }
 
-    // Fonction -1 panier
+    // Fonction -1 modale panier
     function oneDeleteShoppingBag() {
+        // on recup la ref comme sur la fonction au dessus
         let ref = $(this).parents('div').parents('div').attr('class');
         ref = ref.substr(0, 3);
-        $(bagArray).each(function(i) {
-            if (bagArray[i] == ref) {
-                bagArray[i + 1] = --bagArray[i + 1]
-                    --inShoppingBag;
+        $(arrayBag).each(function(i) {
+            if (arrayBag[i] == ref) {
+                // on fait -1 à la quantié de la ref dans arrayBag
+                arrayBag[i + 1] = --arrayBag[i + 1]
+                // -1 sur inShoppingBag
+                --inShoppingBag;
                 if (inShoppingBag == 0) {
-                    $('#shopping-number').css('background-color', 'red');
+                    $('#shopping-number').css('color', 'red');
                 }
                 $('#shopping-number').html(`${inShoppingBag}`);
                 if (inShoppingBag == 0) {
@@ -327,32 +355,30 @@ $(function() {
                 <p>Votre panier est vide !</p>
                 `)
                 }
-                if (bagArray[i + 1] == 0) {
+                // la quantité d'une ref tombe à 0 alors on efface sa div de la modale panier
+                if (arrayBag[i + 1] == 0) {
                     $(`.${ref}`).remove();
-                    bagArray.splice(i, 2);
+                    // et on supprime sa présence et sa quantité dans arrayBag
+                    arrayBag.splice(i, 2);
                 }
-                $(`.${ref}>div>span`).html('');
-                $(`.${ref}>div>span`).append(`
-            ${bagArray[i+1]}
-            `);
+                // affiche sa nouvelle quantité dans modal panier
+                $(`.${ref}>div>span`).html(`${arrayBag[i+1]}`);
             }
         })
         calcTotalPrice();
     }
 
     // Fonction +1 panier
+    // fonctionne comme la fonction au dessus mais avec quelques étapes en moins
     function oneAddShoppingBag() {
         let ref = $(this).parents('div').parents('div').attr('class');
         ref = ref.substr(0, 3);
-        $(bagArray).each(function(i) {
-            if (bagArray[i] == ref) {
-                bagArray[i + 1] = ++bagArray[i + 1]
+        $(arrayBag).each(function(i) {
+            if (arrayBag[i] == ref) {
+                arrayBag[i + 1] = ++arrayBag[i + 1]
                     ++inShoppingBag;
                 $('#shopping-number').html(`${inShoppingBag}`);
-                $(`.${ref}>div>span`).html('');
-                $(`.${ref}>div>span`).append(`
-            ${bagArray[i+1]}
-            `);
+                $(`.${ref}>div>span`).html(`${arrayBag[i+1]}`);
             }
         })
         calcTotalPrice();
@@ -361,30 +387,39 @@ $(function() {
     // Fonction calculant le prix total des élements du panier
     function calcTotalPrice() {
         let totalPrice = 0;
-        $(bagArray).each(function(i) {
-            if (!isNaN(bagArray[i])) {
+        // on boucle dans arrayBag
+        $(arrayBag).each(function(i) {
+            // Si l'élément contenu dans arrayBag[i] est un entier, alors :
+            if (!isNaN(arrayBag[i])) {
+                // On boucle dans arrayContent
                 $(arrayContent).each(function(x) {
                     $(arrayContent[x]).each(function(y) {
-                        if (bagArray[i - 1] == arrayContent[x][y]['img']) {
-                            totalPrice = totalPrice + (bagArray[i] * parseFloat(arrayContent[x][y]['prix']));
+                        // Si on trouve la ref ([i-1] est l'index d'une ref car nous bouclons dans arrayBag uniquement aux index contenant un entier (donc une quantité) donc pour recup le ref de cette quantité on fait i-1)
+                        if (arrayBag[i - 1] == arrayContent[x][y]['img']) {
+                            // calcul du prix final
+                            totalPrice = totalPrice + (arrayBag[i] * parseFloat(arrayContent[x][y]['prix']));
                         }
                     })
                 })
             }
         })
-        $('#modalBag .modal-footer>span').html('');
-        $('#modalBag .modal-footer>span').append(`
-          Prix total à payer : ${totalPrice} €
-          `);
+        // affichage du nouuveau prix dans modal bag
+        $('#modalBag .modal-footer>span').html(`Prix total à payer : ${totalPrice} €`);
     }
 
     // Fonction recherche
+    // A chaque fois qu'on ajoute un caractère dans le champ, une recherche est effectuée (keyup)
     $('#input-search').keyup(function() {
+        // cache tout le contenu
         $('#content>div').css('display', 'none')
+        // recup la valeur du input rechercher
         let input = $(this).val();
+        // initialise une regexp en fonction de la valeur du input
         let regexp = new RegExp(`${input}`, 'i');
+        // boucle dans arrayContent
         $(arrayContent).each(function(x) {
             $(arrayContent[x]).each(function(y) {
+                // si la regexp renvoie vraie en étant testé dans 'nom', 'categorie' ou 'description', l'élement en question est affiché
                 if ((regexp.test(arrayContent[x][y]['nom'])) || (regexp.test(arrayContent[x][y]['categorie'])) || (regexp.test(arrayContent[x][y]['description']))) {
                     $(`#${arrayContent[x][y]['img']}`).css('display', 'block');
                 }
@@ -409,23 +444,24 @@ $(function() {
         }
     });
 
-    // Affiche une alerte quand on clique sur le bouton acheter de la modale, et réinitialise toutes les variables et l'ui
+    // Affiche une alerte quand on clique sur le bouton acheter de la modale, et réinitialise toutes les variables et l'interface
     $('#buy').click(function() {
         if (inShoppingBag > 0) {
             alert('Merci pour votre achat !');
             $('#modalBag .modal-body').html('');
-            bagArray = [];
+            arrayBag = [];
             inShoppingBag = 0;
+            $('#modalBag .modal-body').append(`<p>Votre panier est vide !</p>`);
             $('#shopping-number').html(`${inShoppingBag}`);
-            $('#shopping-number').css('background-color', 'red');
+            $('#shopping-number').css('color', 'red');
             calcTotalPrice();
             return;
         }
-        alert('Votre panier est vide !')
+        alert('Votre panier est vide !');
     })
 
     // Fonction de test et de debug
     $('button').click(function() {
-        console.log(bagArray);
+        console.log(arrayBag);
     })
 });

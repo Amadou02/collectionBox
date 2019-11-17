@@ -6,6 +6,7 @@
 		<title>Collection Box</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Calistoga&display=swap" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/2031c2b214.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="assets/css/style.css">
 	</head>
@@ -22,7 +23,7 @@
 				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 					<ul class="navbar-nav mr-auto mt-2 mt-md-0">
-						<li class="nav-item active"><a id="home" class="nav-link" href="#!">Accueil</a></li>
+						<li class="nav-item active"><a id="home" class="nav-link" href="#!">Tout afficher</a></li>
 						<li class="nav-item active"><span id="pipe-bar" class="nav-link">|</span></li>
 						<li class="nav-item active"><a id="timbre"class="nav-link" href="#!">Timbres</a></li>
 						<li class="nav-item active"><a id="piece" class="nav-link" href="#!">Pièces</a></li>
@@ -31,12 +32,7 @@
 						<li class="nav-item active"><a id="oeuvre" class="nav-link" href="#!">Tableaux</a></li>
 					</ul>
 					<div id="display-nav-xl" class="d-flex">
-						<button id="shopping-bag" class="btn btn-light" type="button" name="button" data-toggle="modal" data-target="#modalBag"><i class="fas fa-shopping-basket"></i></button>
-						<div class="d-flex align-items-center mr-4">
-							<div id="shopping-number" class="rounded-circle d-flex justify-content-center align-items-center ml-2">
-								<span>0</span>
-							</div>
-						</div>
+						<button id="shopping-bag" class="btn btn-light mr-3" type="button" name="button" data-toggle="modal" data-target="#modalBag"><i class="fas fa-shopping-basket"></i><span id="shopping-number">0</span></button>
 						<input id="input-search" class="form-control" type="text" name="search" placeholder="Rechercher...">
 					</div>
 				</div>
@@ -72,7 +68,7 @@
 						<!-- block info confidentialité -->
 						<div id="polConfidence">
 							<p class="text-footer">
-								Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisépar Clean World France pour informations.La base légale du traitement est [base légale du traitement].Les données collectées seront communiquées aux seuls destinataires suivants :Clean World associations régionnales.Les données sont conservées pendant 12 mois.Vous pouvez accéder aux données vous concernant, les rectifier, demander leur effacementou exercer votre droit à la limitation du traitement de vos données.(Vous pouvez retirer à tout moment votre consentement au traitement de vos données ; Vous pouvez également vous opposerau traitement de vos données ; Vous pouvez également exercer votre droit à la portabilitéde vos données)Consultez le site cnil.fr pour plus d’informations sur vos droits.Pour exercer ces droits ou pour toute question sur le traitement de vos données dans cedispositif, vous pouvez contacter (le cas échéant, notre délégué à la protection des données oule service chargé de l’exercice de ces droits) : cleanworld@cleanworldfrance.orgSi vous estimez, après nous avoir contactés, que vos droits « Informatique et Libertés »ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL.
+								Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisépar Collection Box France pour informations.La base légale du traitement est [base légale du traitement].Les données collectées seront communiquées aux seuls destinataires suivants :Collection Box associations régionnales.Les données sont conservées pendant 12 mois.Vous pouvez accéder aux données vous concernant, les rectifier, demander leur effacementou exercer votre droit à la limitation du traitement de vos données.(Vous pouvez retirer à tout moment votre consentement au traitement de vos données ; Vous pouvez également vous opposerau traitement de vos données ; Vous pouvez également exercer votre droit à la portabilitéde vos données)Consultez le site cnil.fr pour plus d’informations sur vos droits.Pour exercer ces droits ou pour toute question sur le traitement de vos données dans cedispositif, vous pouvez contacter (le cas échéant, notre délégué à la protection des données oule service chargé de l’exercice de ces droits) : CollectionBox@CollectionBoxfrance.orgSi vous estimez, après nous avoir contactés, que vos droits « Informatique et Libertés »ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL.
 							</p>
 						</div>
 					</div>
@@ -84,14 +80,14 @@
 						<!-- bloc infos personnelles -->
 						<div id="polInfoPerso">
 							<p class="text-footer">
-								Les données personnelles recueillies sur chaque formulaire sont traitées selon des protocoles sécurisés. Clean World informe sur chaque formulaire du traitement des données à caractère personnel et de sa finalité.Les traitements automatisés mis en œuvre par Clean World répondent à des finalités explicites, légitimes et déterminées.Ces finalités sont principalement les suivantes :
+								Les données personnelles recueillies sur chaque formulaire sont traitées selon des protocoles sécurisés. Collection Box informe sur chaque formulaire du traitement des données à caractère personnel et de sa finalité.Les traitements automatisés mis en œuvre par Collection Box répondent à des finalités explicites, légitimes et déterminées.Ces finalités sont principalement les suivantes :
 							</p>
 							<ul>
 								<li>La gestion des relations avec les sympathisants</li>
 								<li>La gestion de l’information et la communication externe (newsletters et brochures) et dans le cas des pétitions</li>
 								<li>La gestion des relations avec les donateurs ou mécènes, testateurs, potentiels donateurs ou mécènes, potentiels testateurs.</li>
 								<li>La gestion et le suivi du traitement des libéralités</li>
-								<li>La gestion du processus de sélection des soutiens par Clean World</li>
+								<li>La gestion du processus de sélection des soutiens par Collection Box</li>
 								<li>La gestion et la mise en œuvre des projets</li>
 								<li>La gestion du processus de création et de suivi des fondations abritées</li>
 							</ul>
@@ -101,21 +97,18 @@
 			</div>
 		</footer>
 		<!-- modale pour la description des articles -->
-		<div class="modal" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescriptionLabel" aria-hidden="true">
+		<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescriptionLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-scrollable" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="modalDescriptionLabel">
-							Description du produit
 						</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
-					<div class="modal-body">
-						...
+					<div class="modal-body text-justify">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-						<button type="button" class="btn btn-primary">Ajouter au panier</button>
+						<span></span>
 					</div>
 				</div>
 			</div>
@@ -150,7 +143,7 @@
 		<!-- div hover description -->
 		<div class="tail-description">
 			<p>
-				<!-- JS HERE -->
+			<!-- JS HERE -->
 			</p>
 		</div>
 		<!-- fin div hover description -->
