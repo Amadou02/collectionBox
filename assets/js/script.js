@@ -264,17 +264,20 @@ $(function() {
                             $(arrayContent[x]).each(function(y) {
                                 if (arrayBag[i] == arrayContent[x][y]['img']) {
                                     $('#modalBag .modal-body').append(`
-                                      <div class="${arrayContent[x][y]['img']} d-flex justify-content-between align-items-center">
-                                        <span>${arrayContent[x][y]['nom']}</span>
+                                      <div class="${arrayContent[x][y]['img']} d-flex justify-content-between align-items-center mt-2">
+                                        <div>
+                                          <img class="img-panier img-fluid" src="assets/img/${arrayContent[x][y]["img"]}.jpg" alt="">
+                                          <span class="ml-2">${arrayContent[x][y]['nom']}</span>
+                                        </div>
                                         <div class="d-flex align-items-center">
                                           <span>${arrayBag[i+1]}</span>
-                                          <button type="button" class="btn-outline-info btn-sm ml-2 addShoppingBagOne">
+                                          <button type="button" class="btn-panier ml-2 addShoppingBagOne">
                                              +
                                           </button>
-                                          <button type="button" class="btn-outline-info btn-sm ml-2 removeShoppingBagOne">
+                                          <button type="button" class="btn-panier ml-2 removeShoppingBagOne">
                                              -
                                           </button>
-                                          <button type="button" class="btn-outline-info btn-sm ml-2 removeShoppingBag">
+                                          <button type="button" class="btn-panier ml-2 removeShoppingBag">
                                              X
                                           </button>
                                         </div>
@@ -362,7 +365,7 @@ $(function() {
                     arrayBag.splice(i, 2);
                 }
                 // affiche sa nouvelle quantité dans modal panier
-                $(`.${ref}>div>span`).html(`${arrayBag[i+1]}`);
+                $(`.${ref}>div:nth-child(2)>span`).html(`${arrayBag[i+1]}`);
             }
         })
         calcTotalPrice();
@@ -378,7 +381,7 @@ $(function() {
                 arrayBag[i + 1] = ++arrayBag[i + 1]
                     ++inShoppingBag;
                 $('#shopping-number').html(`${inShoppingBag}`);
-                $(`.${ref}>div>span`).html(`${arrayBag[i+1]}`);
+                $(`.${ref}>div:nth-child(2)>span`).html(`${arrayBag[i+1]}`);
             }
         })
         calcTotalPrice();
