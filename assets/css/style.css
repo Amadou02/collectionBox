@@ -180,6 +180,11 @@ footer {
 	display: none;
 }
 
+/*Modals : Descriptif et panier*/
+.contentDeco{
+	background-image: url(../img/papier.jpg);
+}
+
 /* Afficher masquer block politique confidentialite*/
 #polConfidence {
 	display: none;
