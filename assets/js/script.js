@@ -177,7 +177,7 @@ $(function() {
         $(arrayContent[x]).each(function(y) {
             // Créé les bloc article dans #content grace aux données des objets
             $('#content').append(`
-        <div id="${arrayContent[x][y]["img"]}" class="col-lg-3 article ${arrayContent[x][y]["categorie"]}">
+        <div id="${arrayContent[x][y]["img"]}" class="col-lg-3 col-md-5 col-sm-5 article ${arrayContent[x][y]["categorie"]}">
           <img class="smallImg img-fluid" src="assets/img/${arrayContent[x][y]["img"]}.jpg" alt="">
           <div>
             <h4 class="text-center">${arrayContent[x][y]["nom"]}</h4>

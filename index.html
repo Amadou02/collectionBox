@@ -21,20 +21,20 @@
 		<main class="container">
 			<nav class="row navbar navbar-expand-lg navbar-dark bg-brown sticky-top">
 				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+				<div id="display-nav-xl" class="d-flex">
+					<button id="shopping-bag" class="btn btn-light mr-3" type="button" name="button" data-toggle="modal" data-target="#modalBag"><i class="fas fa-shopping-basket"></i><span id="shopping-number">0</span></button>
+					<input id="input-search" class="form-control" type="text" name="search" placeholder="Rechercher...">
+				</div>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 					<ul class="navbar-nav mr-auto mt-2 mt-md-0">
 						<li class="nav-item active"><a id="home" class="nav-link" href="#!">Tout afficher</a></li>
 						<li class="nav-item active"><span id="pipe-bar" class="nav-link">|</span></li>
-						<li class="nav-item active"><a id="timbre"class="nav-link" href="#!">Timbres</a></li>
+						<li class="nav-item active"><a id="timbre" class="nav-link" href="#!">Timbres</a></li>
 						<li class="nav-item active"><a id="piece" class="nav-link" href="#!">Pièces</a></li>
-						<li class="nav-item active"><a id="meuble"class="nav-link" href="#!">Meubles</a></li>
-						<li class="nav-item active"><a id="voiture"class="nav-link" href="#!">Voitures</a></li>
+						<li class="nav-item active"><a id="meuble" class="nav-link" href="#!">Meubles</a></li>
+						<li class="nav-item active"><a id="voiture" class="nav-link" href="#!">Voitures</a></li>
 						<li class="nav-item active"><a id="oeuvre" class="nav-link" href="#!">Tableaux</a></li>
 					</ul>
-					<div id="display-nav-xl" class="d-flex">
-						<button id="shopping-bag" class="btn btn-light mr-3" type="button" name="button" data-toggle="modal" data-target="#modalBag"><i class="fas fa-shopping-basket"></i><span id="shopping-number">0</span></button>
-						<input id="input-search" class="form-control" type="text" name="search" placeholder="Rechercher...">
-					</div>
 				</div>
 			</nav>
 			<div id="content" class="row justify-content-around">
@@ -101,8 +101,7 @@
 			<div class="modal-dialog modal-dialog-scrollable" role="document">
 				<div class="modal-content contentDeco">
 					<div class="modal-header modal-color">
-						<h5 class="modal-title font-weight-bold" id="modalDescriptionLabel">
-						</h5>
+						<h5 class="modal-title font-weight-bold" id="modalDescriptionLabel"></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</div>
 					<div class="modal-body text-justify">
@@ -140,13 +139,6 @@
 			</div>
 		</div>
 		<!-- fin modale panier -->
-		<!-- div hover description -->
-		<div class="tail-description">
-			<p>
-			<!-- JS HERE -->
-			</p>
-		</div>
-		<!-- fin div hover description -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

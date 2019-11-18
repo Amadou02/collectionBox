@@ -1,3 +1,5 @@
+/* MAIN START */
+
 body {
 	background: url(../img/papier.jpg);
 	background-size: 100%, auto;
@@ -15,7 +17,6 @@ body {
 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* MAIN START */
 main {
 	background-color: rgba(250, 234, 216, 0.8);
 }
@@ -139,9 +140,6 @@ nav li {
 }
 
 #shopping-number {
-	/* width: 30px;
-	height: 30px; */
-	/* background-color: red; */
 	color: red;
 	font-size: 1.1rem;
 	margin-left: 12px;
@@ -278,6 +276,8 @@ footer {
 
 /* FOOTER END */
 
+/* RESPONSIVE START */
+
 @media screen and (max-width: 992px) {
 	#pipe-bar {
 		display: none;
@@ -288,10 +288,10 @@ footer {
 	}
 }
 
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 766px) {
 	h1 {
 		font-size: 5rem;
+		-webkit-text-stroke: 1px #4F3423;
 	}
 }
 
@@ -299,9 +299,13 @@ footer {
 
 	h1 {
 		font-size: 4rem;
-	}
-
-	.tail-description {
-		width: 80vw;
+		-webkit-text-stroke: 1px #4F3423;
 	}
 }
+
+@media screen and (min-width: 992px) {
+	#display-nav-xl{
+		order: 1;
+}
+
+/* RESPONSIVE END */
