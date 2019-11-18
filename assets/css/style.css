@@ -156,12 +156,11 @@ nav li {
 /* HEADER END */
 
 /* FOOTER START */
-footer {
-	background-color: #F2F2F2;
+.container1{
 	display: flex;
 	justify-content: space-around;
 	position: relative;
-	background-color: rgba(250, 234, 216, 0.8);
+	background: rgba(226, 205, 180, 0.8);
 }
 
 .blockEnLigne {
@@ -169,16 +168,12 @@ footer {
 }
 
 /* Afficher masquer block cookie */
-#container {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
 #cookie {
+	background: rgba(250, 236, 219, 0.8);
 	display: none;
-	background-color: rgba(250, 234, 216, 0.8);
 	padding: 1%;
 }
+
 
 #afficher:target #cookie {
 	display: block;
@@ -188,9 +183,19 @@ footer {
 	transform: translate(-50%);
 	width: 100%;
 }
-
+.afficher{
+	color : black;
+}
 .masquer {
 	display: none;
+	color : black;
+}
+.afficher:hover{
+	color:  rgba(243, 160, 6, 0.87);
+}
+.masquer:hover{
+	display: none;
+	color:  rgba(243, 160, 6, 0.87);
 }
 
 #afficher:target .masquer {
@@ -200,6 +205,11 @@ footer {
 #afficher:target .afficher {
 	display: none;
 }
+.btn-cookie{
+	background-color: rgba(79, 52, 35);
+	color: white;
+}
+
 
 /*Modals : Descriptif et panier*/
 .contentDeco{
@@ -220,6 +230,7 @@ footer {
 
 }
 
+
 /* Afficher masquer block politique confidentialite*/
 #polConfidence {
 	display: none;
@@ -235,9 +246,19 @@ footer {
 	transform: translate(-50%);
 	width: 100%;
 }
-
+.afficher2{
+	color : black;
+}
 .masquer2 {
 	display: none;
+	color : black;
+}
+.afficher2:hover{
+	color: rgba(243, 160, 6, 0.87);
+}
+.masquer2:hover{
+	display: none;
+	color:  rgba(243, 160, 6, 0.87);
 }
 
 #afficher2:target .masquer2 {
@@ -263,9 +284,19 @@ footer {
 	transform: translate(-50%);
 	width: 100%;
 }
-
+.afficher3{
+	color : black;
+}
 .masquer3 {
 	display: none;
+	color : black;
+}
+.afficher3:hover{
+	color:  rgba(243, 160, 6, 0.87);
+}
+.masquer3:hover{
+	display: none;
+	color: rgba(243, 160, 6, 0.87);
 }
 
 #afficher3:target .masquer3 {
