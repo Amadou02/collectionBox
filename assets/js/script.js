@@ -151,8 +151,14 @@ $(function() {
     var arrayBag = [];
     var inShoppingBag = 0;
 
+    // Attend que tout le JS soit chargé avant d'afficher les articles
+    $(function(){
+      mainContent();
+    });
+
     // Fonction créant les blocs articles
     // Double boucle permettant de parcourir chaque objets de chaque catégories
+    function mainContent(){
     $(arrayContent).each(function(x) {
         $(arrayContent[x]).each(function(y) {
             // Créé les bloc article dans #content grace aux données des objets
@@ -177,6 +183,7 @@ $(function() {
         `);
         });
     });
+  };
 
     // Fonction remplissant la modale description
     $('.toggleDescription').click(function(){
@@ -452,5 +459,27 @@ $(function() {
     // Fonction de test et de debug
     $('button').click(function() {
         console.log(arrayBag);
+    })
+
+    // Fonction pour ajouter articles, non fonctionnelle pour l'instant
+    $('#addNew').click(function(){
+      let nom = $('#modalAdd input:nth-child(1)').val();
+      let categorie = $('#modalAdd select').val();
+      let prix = $('#modalAdd input:nth-child(3)').val();
+      let description = $('#modalAdd input:nth-child(4)').val();
+      let reference = $('#modalAdd input:nth-child(5)').val();
+      ++newObject;
+      var newObject = {
+          'categorie': `${categorie}`,
+          'nom': `${nom}`,
+          'prix': `${prix}`,
+          'description': `${description}`,
+          'img':`${reference}`
+      };
+      $('#content').html('');
+      mainContent();
+      if (categorie == 'piece') {
+        arrayPiece.push(newObject);
+      }
     })
 });
