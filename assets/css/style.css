@@ -91,16 +91,6 @@ h4{
 	padding-bottom: 50px;
 }
 
-.tail-description {
-	position: absolute;
-	float: right;
-	display: none;
-	background-color: white;
-	width: 300px;
-	border: 2px solid black;
-	padding: 15px;
-}
-
 .btn-sm{
 	font-size: 1.1rem;
 }
